@@ -1,37 +1,47 @@
+import os
+from flask import Flask, request, jsonify
 import speech_recognition as sr
 import moviepy.editor as mp
-import os
+import tempfile
 
-# Specify the file path to your video file
-video_file_path = r"F:\cs50\convert video to text\Convert-Video-To-Text\FoxNews.mp4"
+app = Flask(__name__)
 
-# Specify the directory where you want to save the files
-output_directory = r"F:\cs50"
+@app.route('/')
+def index():
+    return open('index.html').read()
 
-# Combine the directory path with the file names
-converted_audio_file_path = os.path.join(output_directory, "converted_mp3.wav")
-recognized_text_file_path = os.path.join(output_directory, "recognized_text_file.txt")
+@app.route('/convert-video-to-text', methods=['POST'])
+def convert_video_to_text():
+    try:
+        # Get the uploaded video file from the request
+        uploaded_video = request.files['video']
 
-# Convert video to audio and save it as a WAV file
-clip = mp.VideoFileClip(video_file_path)
-clip.audio.write_audiofile(converted_audio_file_path)
+        # Create a temporary directory to store the uploaded video and converted audio
+        with tempfile.TemporaryDirectory() as temp_dir:
+            video_temp_path = os.path.join(temp_dir, 'uploaded_video.mp4')
+            uploaded_video.save(video_temp_path)
 
-# Initialize the speech recognition recognizer
-r = sr.Recognizer()
+            # Convert video to audio and save it as a WAV file
+            converted_audio_file_path = os.path.join(temp_dir, "converted_mp3.wav")
+            clip = mp.VideoFileClip(video_temp_path)
+            clip.audio.write_audiofile(converted_audio_file_path)
 
-# Load the converted audio file
-audio = sr.AudioFile(converted_audio_file_path)
+            # Initialize the speech recognition recognizer
+            r = sr.Recognizer()
 
-print("Converting audio to text...")
+            # Load the converted audio file
+            audio = sr.AudioFile(converted_audio_file_path)
 
-# Recognize the speech in the audio file
-with audio as source:
-    r.adjust_for_ambient_noise(source)
-    audio_file = r.record(source, duration=50) 
-result = r.recognize_google(audio_file)
+            # Recognize the speech in the audio file
+            with audio as source:
+                r.adjust_for_ambient_noise(source)
+                audio_file = r.record(source, duration=50)
+                result = r.recognize_google(audio_file)
 
-# Write the recognized text to a text file in the specified directory
-with open(recognized_text_file_path, mode='a') as file:
-    file.write("Speech recognized\n")
-    file.write(result)
-    print("Conversion complete. Recognized text saved to", recognized_text_file_path)
+            return jsonify({'result': result})
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+if __name__ == '__main__':
+    app.run(debug=True)

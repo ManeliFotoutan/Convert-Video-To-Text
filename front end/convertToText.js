@@ -1,53 +1,50 @@
 const videoInput = document.getElementById('video-input');
 const videoPlayer = document.getElementById('video-player');
 const textOutput = document.getElementById('text-output');
-const browseButton = document.getElementById('browse-button');
-const submitButton = document.getElementById('submit-button');
+const videoForm = document.getElementById('video-form');
+const submitAnchor = document.getElementById('submit-button'); // Update this line
 
-submitButton.addEventListener('click', convertVideoToText);
+submitAnchor.addEventListener('click', function (event) { // Update this line
+  event.preventDefault(); // Prevent the default link behavior
+  videoForm.submit();
+});
+
+videoForm.addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+  convertVideoToText();
+});
 
 function convertVideoToText() {
   const file = videoInput.files[0];
 
   if (file) {
-    const reader = new FileReader();
+    const formData = new FormData();
+    formData.append('video', file);
 
-    reader.onload = function (e) {
-      const videoData = e.target.result;
-      videoPlayer.src = videoData;
-
-      videoPlayer.addEventListener('loadedmetadata', startSpeechRecognition);
-    };
-
-    reader.readAsDataURL(file);
+    fetch('/convert-video-to-text', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Update the text output with the result
+      textOutput.textContent = data.result;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   }
 }
+
 let recognition;
 
-function startSpeechRecognition() {
-  recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-  recognition.lang = 'en-US';
-
-  recognition.onresult = function (event) {
-    const transcript = event.results[event.results.length - 1][0].transcript;
-    textOutput.textContent += transcript;
-  };
-
-  recognition.start();
-}
-
-function stopSpeechRecognition() {
-  if (recognition) {
-    recognition.stop();
-  }
-}
 function startSpeechRecognition() {
   const track = videoPlayer.audioTracks[0];
 
   if (track) {
     const audioBlob = track.blobURL;
     const audio = new Audio(audioBlob);
-    const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+    recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 
     recognition.lang = 'en-US'; // Set the language for speech recognition
     recognition.continuous = true; // Enable continuous listening
@@ -58,7 +55,7 @@ function startSpeechRecognition() {
     };
 
     audio.addEventListener('ended', function () {
-      recognition.stop();
+      stopSpeechRecognition();
     });
 
     audio.addEventListener('loadeddata', function () {
@@ -75,3 +72,26 @@ function startSpeechRecognition() {
       });
   }
 }
+
+function stopSpeechRecognition() {
+  if (recognition) {
+    recognition.stop();
+  }
+}
+
+videoForm.addEventListener('change', function () {
+  const file = videoInput.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const videoData = e.target.result;
+      videoPlayer.src = videoData;
+
+      videoPlayer.addEventListener('loadedmetadata', startSpeechRecognition);
+    };
+
+    reader.readAsDataURL(file);
+  }
+});

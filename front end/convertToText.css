@@ -1,3 +1,4 @@
+
 body {
   text-align: center;
   background-color: #27282c; /* Set the background color to #27282c */
@@ -14,6 +15,26 @@ p {
 
 h1{
 color: #fff;
+position: relative;
+letter-spacing: 15px;
+color:#0e3742;
+width: 100%;
+text-align: center;
+-webkit-box-reflect: below 1px linear-gradient(transparent , #0008);
+line-height: 0.70rem;
+outline: none;
+animation: animate 5s linear infinite ;
+}
+
+@keyframes animate{
+  0%,18%,20%,50.1%,80%,90.1%,92%{
+    color:#0e3742;
+    box-shadow: none;
+  }
+  18.1%,20.1%,30%,50%,60.1%,80.1%,90%,92.1%,100%{
+    color: #fff;
+    box-shadow: 0 0 10px #03bcf4;
+  }
 }
 
 h3{
@@ -204,4 +225,3 @@ a:hover i::after{
   width: 20px;
   left: 80%;
 }
-

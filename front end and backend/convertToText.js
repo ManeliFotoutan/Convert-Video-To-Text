@@ -1,3 +1,4 @@
+
 const videoInput = document.getElementById('video-input');
 const videoPlayer = document.getElementById('video-player');
 const textOutput = document.getElementById('text-output');
@@ -19,7 +20,7 @@ function convertVideoToText() {
 
   if (file) {
     const formData = new FormData();
-    formData.append('video', file);
+    formData.append('video-player', file);
 
     fetch('/convert-video-to-text', {
       method: 'POST',

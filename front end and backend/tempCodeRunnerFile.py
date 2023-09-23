@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return open('index.html').read()
+    return open('convertToText.html').read()
 
 @app.route('/convert-video-to-text', methods=['POST'])
 def convert_video_to_text():

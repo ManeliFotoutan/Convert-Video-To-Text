@@ -1,9 +1,8 @@
 const videoInput = document.getElementById('video-input');
 const videoPlayer = document.getElementById('video-player');
 const textOutput = document.getElementById('text-output');
+const browseButton = document.getElementById('browse-button');
 const submitButton = document.getElementById('submit-button');
-const startButton = document.getElementById('start-button');
-const stopButton = document.getElementById('stop-button');
 
 submitButton.addEventListener('click', convertVideoToText);
 
@@ -24,9 +23,6 @@ function convertVideoToText() {
   }
 }
 let recognition;
-
-startButton.addEventListener('click', startSpeechRecognition);
-stopButton.addEventListener('click', stopSpeechRecognition);
 
 function startSpeechRecognition() {
   recognition = new webkitSpeechRecognition() || new SpeechRecognition();

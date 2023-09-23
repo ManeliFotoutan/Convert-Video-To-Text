@@ -1,8 +1,9 @@
-
 body {
   text-align: center;
   background-color: #27282c; /* Set the background color to #27282c */
   font-family: "Your Desired Font", sans-serif;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
 
 h1, h2, h3 {
@@ -41,19 +42,6 @@ h3{
   text-align: center;   
 }
 
-#conversion-results {
-  margin-top: 20px;
-  background-color: rgb(135, 206, 235);
-  border: 2px solid #cccccc;
-  padding: 2px;
-}
-
-#explanation {
-  margin-top: 20px;
-  background-color: rgb(155, 215, 239);
-  border: 2px solid #cccccc; 
-  padding: 2px; 
-}
 
   #video-container {
       margin-top: 50px;
@@ -224,4 +212,37 @@ a:hover i::after{
 .video-input:hover i::after{
   width: 20px;
   left: 80%;
+}
+
+.box {
+  position: relative;
+  width: 1550px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #27282c;
+  margin-top: 45px;
+}
+
+.box:before,
+.box:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(235deg, #89ff00, #060c21, #00bcd4);
+  z-index: -1;
+}
+
+.box:after {
+  filter: blur(40px);
+}
+
+.content {
+  padding: 20px;
+  box-sizing: border-box;
+  color: #fff;
 }

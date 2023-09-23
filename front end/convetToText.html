@@ -7,8 +7,11 @@
 <body>
     <h1>Video To Text Converter</h1>
 
-    <div id="explanation">
-        <h3>Browse your video which you want to convert to text, then click submit:</h3>
+    <div class="box">
+        <div class="content">
+            <p>Browse your video which you want to convert to text, then click submit:</p>
+            <pid="explanation"></pid=>
+        </div>
     </div>
 
     <div id="video-container">
@@ -27,9 +30,11 @@
         <a href="#" id="submit-button"style="--clr:#1e9bff"><span>Submit</span><i></i></a>
     </div>
 
-    <div id="conversion-results">
-        <h2>Converted Text:</h2>
-        <p id="text-output"></p>
+    <div class="box">
+        <div class="content">
+            <p>Converted Text:</p>
+            <p id="text-output"></p>
+        </div>
     </div>
 
     <script src="convertToText.js"></script>

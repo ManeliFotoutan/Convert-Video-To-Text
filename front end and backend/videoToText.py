@@ -3,14 +3,16 @@ from flask import Flask, request, jsonify
 import speech_recognition as sr
 import moviepy.editor as mp
 import tempfile
+from flask_cors import CORS  # Import the CORS extension
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for your Flask app
 
 @app.route('/')
 def index():
     return open('convertToText.html').read()
 
-@app.route('/convert-video-to-text', methods=['POST'])
+@app.route('http://localhost:8000/convert-video-to-text', methods=['POST'])
 def convert_video_to_text():
     try:
         # Get the uploaded video file from the request

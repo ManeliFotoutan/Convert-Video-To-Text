@@ -62,157 +62,11 @@ h3{
   text-align: center;
 }
 
-a{
-  position: relative;
-  background: #fff;
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  letter-spacing: 0.1em;
-  font-family: 400;
-  padding: 6px 12px;
-  transform: 0.5s;
-  margin-top: 50px; 
-}
 
-
-a:hover{
-  background: var(--clr);
-  color: var(--clr);
-  letter-spacing: 0.25em;
-  box-shadow: 0 0 35px var(--clr);
-}
-
-a:before{
-  content: '';
-  position: absolute;
-  inset: 2px;
-  background: #27282c;
-}
-
-a span{
-  position: relative;
-  z-index: 1;
-}
-
-a i{
-  position: absolute;
-  inset: 0;
-  display: block;
-}
-
-a i::before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 80%;
-  width: 10px;
-  height: 4px;
-  background: #27282c;
-  transform: translateX(-50%)skew(325deg);
-  transition: 0.5s;
-}
-
-a:hover i::before{
-  width: 20px;
-  left: 20%;
-}
-
-a i::after{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 20%;
-  width: 10px;
-  height: 4px;
-  background: #27282c;
-  transform: translateX(-50%)skew(325deg);
-  transition: 0.5s;
-}
-
-a:hover i::after{
-  width: 20px;
-  left: 80%;
-}
-
-#video-container input[type="file"] {
+#video-form input[type="file"] {
   display: none; /* Hide the default file input button */
 }
 
-.video-input{
-  position: relative;
-  background: #fff;
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  letter-spacing: 0.1em;
-  font-family: 400;
-  padding: 6px 12px; 
-  transform: 0.5s;
-  margin-top: 50px; 
-  
-}
-
-.video-input:hover{
-  background: var(--clr);
-  color: var(--clr);
-  letter-spacing: 0.25em;
-  box-shadow: 0 0 35px var(--clr);
-}
-
-.video-input:before{
-  content: '';
-  position: absolute;
-  inset: 2px;
-  background: #27282c;
-}
-
-.video-input span{
-  position: relative;
-  z-index: 1;
-}
-
-.video-input i{
-  position: absolute;
-  inset: 0;
-  display: block;
-}
-
-.video-input i::before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 80%;
-  width: 10px;
-  height: 4px;
-  background: #27282c;
-  transform: translateX(-50%)skew(325deg);
-  transition: 0.5s;
-}
-
-.video-input:hover i::before{
-  width: 20px;
-  left: 20%;
-}
-
-.video-input i::after{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 20%;
-  width: 10px;
-  height: 4px;
-  background: #27282c;
-  transform: translateX(-50%)skew(325deg);
-  transition: 0.5s;
-}
-
-.video-input:hover i::after{
-  width: 20px;
-  left: 80%;
-}
 
 .box {
   position: relative;
@@ -246,3 +100,4 @@ a:hover i::after{
   box-sizing: border-box;
   color: #fff;
 }
+

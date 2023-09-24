@@ -3,7 +3,6 @@ import os
 from flask import Flask, request, jsonify
 import speech_recognition as sr
 import moviepy.editor as mp
-import tempfile
 from flask_cors import CORS
 
 # Create a Flask app
@@ -22,29 +21,25 @@ def convert_video_to_text():
         # Get the uploaded video file from the request
         uploaded_video = request.files['inpFile']
 
-        # Create a temporary directory to store the uploaded video and converted audio
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_file:
-            video_temp_path = temp_file.name
-            uploaded_video.save(video_temp_path)
+        # Specify the directory where you want to save the uploaded video file (e.g., the desktop)
+        desktop_directory = 'C:\\Users\\User'
+        video_path_on_desktop = os.path.join(desktop_directory, uploaded_video.filename)
 
-            # Convert video to audio and save it as a WAV file
-            converted_audio_file_path = os.path.join(temp_dir, "converted_mp3.wav")
-            clip = mp.VideoFileClip(video_temp_path)
-            clip.audio.write_audiofile(converted_audio_file_path)
+        # Save the uploaded video to the desktop directory
+        uploaded_video.save(video_path_on_desktop)
 
-            # Initialize the speech recognition recognizer
-            r = sr.Recognizer()
+        # Initialize the speech recognition recognizer
+        r = sr.Recognizer()
 
-            # Load the converted audio file
-            audio = sr.AudioFile(converted_audio_file_path)
-
-            # Recognize the speech in the audio file
-            with audio as source:
+        # Convert video to audio and recognize the speech in the audio
+        with mp.VideoFileClip(video_path_on_desktop) as clip:
+            audio = clip.audio.to_audiofile("converted_audio.wav")
+            with sr.AudioFile("converted_audio.wav") as source:
                 r.adjust_for_ambient_noise(source)
-                audio_file = r.record(source, duration=50)
+                audio_file = r.record(source)
                 result = r.recognize_google(audio_file)
 
-            return jsonify({'result': result})
+        return jsonify({'result': result})
 
     except Exception as e:
         return jsonify({'error': str(e)})

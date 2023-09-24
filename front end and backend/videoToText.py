@@ -1,26 +1,30 @@
+# Import necessary libraries
 import os
 from flask import Flask, request, jsonify
 import speech_recognition as sr
 import moviepy.editor as mp
 import tempfile
-from flask_cors import CORS  # Import the CORS extension
+from flask_cors import CORS
 
+# Create a Flask app
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
 
+# Define the index route to serve your HTML page
 @app.route('/')
 def index():
     return open('convertToText.html').read()
 
-@app.route('http://localhost:8000/convert-video-to-text', methods=['POST'])
+# Define the route for converting video to text
+@app.route('/convert-video-to-text', methods=['POST'])
 def convert_video_to_text():
     try:
         # Get the uploaded video file from the request
-        uploaded_video = request.files['video-player']
+        uploaded_video = request.files['inpFile']
 
         # Create a temporary directory to store the uploaded video and converted audio
-        with tempfile.TemporaryDirectory() as temp_dir:
-            video_temp_path = os.path.join(temp_dir, 'video-player')
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_file:
+            video_temp_path = temp_file.name
             uploaded_video.save(video_temp_path)
 
             # Convert video to audio and save it as a WAV file
@@ -45,5 +49,6 @@ def convert_video_to_text():
     except Exception as e:
         return jsonify({'error': str(e)})
 
+# Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)

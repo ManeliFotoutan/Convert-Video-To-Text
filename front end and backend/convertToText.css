@@ -77,6 +77,7 @@ h3{
   align-items: center;
   background: #27282c;
   margin-top: 45px;
+  margin-top: 20px;
 }
 
 .box:before,
@@ -101,3 +102,14 @@ h3{
   color: #fff;
 }
 
+
+.result{
+  color: #fff;
+  padding: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+#video-player{
+  padding: 30px;;
+}

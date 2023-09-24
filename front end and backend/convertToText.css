@@ -1,17 +1,17 @@
 body {
   text-align: center;
   background-color: #27282c; /* Set the background color to #27282c */
-  font-family: "Your Desired Font", sans-serif;
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
+  font-family: "Your Desired Font", serif; 
 }
 
 h1, h2, h3 {
-  font-family: "Your Desired Font", sans-serif; 
+  font-family: "Your Desired Font", serif; 
 }
 
 p {
-  font-family: "Your Desired Font", sans-serif;
+  font-family: "Your Desired Font",serif;
 }
 
 h1{
@@ -25,6 +25,8 @@ text-align: center;
 line-height: 0.70rem;
 outline: none;
 animation: animate 5s linear infinite ;
+margin-bottom: 70px;
+margin-top: 50px;
 }
 
 @keyframes animate{
@@ -53,7 +55,7 @@ h3{
   #text-output {
     white-space: pre-wrap;
     font-size: 16px;
-    font-family: Arial, sans-serif;
+    font-family: serif;
     line-height: 1.5;
 }
 
@@ -70,7 +72,7 @@ h3{
 
 .box {
   position: relative;
-  width: 1550px;
+  width: 100%;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -113,3 +115,71 @@ h3{
 #video-player{
   padding: 30px;;
 }
+
+#submit {
+  background-color: #27282c; /* Set the background color */
+  color: #fff; /* Set the text color */
+  padding: 8px 13px; /* Add padding for better appearance */
+  border: none; /* Remove the default button border */
+  border-radius: 5px; /* Add some border radius for rounded corners */
+  font-size: 13px; /* Set the font size */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  position: relative;
+  overflow: hidden;
+  font-family: serif; /* Add your desired font here */
+}
+
+#submit:hover {
+  background-color: transparent; /* Change background color on hover */
+  color: #fff; /* Change text color on hover */
+  border: 2px solid #03bcf4; /* Add a border on hover */
+}
+
+#submit::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(45deg, #27282c, #27282c); /* Set the gradient border */
+  z-index: -1;
+}
+
+#submit:hover::before {
+  transform: scale(1.2); /* Increase the scale on hover for the border */
+}
+
+
+/* Adjust the styles for the Browse button label */
+#video-form .video-input label {
+  display: inline-block; /* Add this to make sure the label only takes up the necessary space */
+  background-color: #27282c;
+  color: #fff;
+  padding: 8px 13px;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  width: auto; /* Adjust the width to auto to fit the text */
+}
+
+#video-form .video-input label:hover {
+  background-color: transparent; /* Change background color on hover */
+  color: #fff; /* Change text color on hover */
+  border: 2px solid #03bcf4; /* Add a border on hover */
+}
+
+#video-form .video-input label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(45deg, #27282c, #27282c); /* Set the gradient border */
+  z-index: -1;
+}
+

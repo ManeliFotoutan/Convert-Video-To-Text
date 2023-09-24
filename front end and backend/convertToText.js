@@ -1,3 +1,4 @@
+// JavaScript code for the video conversion form
 const myForm = document.getElementById("video-form");
 const inpFile = document.getElementById("video-input");
 const resultDiv = document.getElementById("result");
@@ -9,6 +10,9 @@ myForm.addEventListener("submit", e => {
   const formData = new FormData();
 
   formData.append("inpFile", inpFile.files[0]);
+
+  // Clear the previous text
+  resultDiv.textContent = "";
 
   fetch(endpoint, {
     method: "post",
@@ -31,16 +35,10 @@ myForm.addEventListener("submit", e => {
     });
 });
 
-
-
-
-
-//for vidio
-// Get references to the video element and the form
+// JavaScript code for video player
 const videoPlayer = document.getElementById('video-player');
 const videoForm = document.getElementById('video-form');
 
-// Add an event listener to the form for form submission
 videoForm.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent the form from actually submitting
     

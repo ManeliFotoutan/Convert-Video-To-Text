@@ -1,45 +1,52 @@
-# Video to Text Converter using Flask
+#Video to Text Conversion Web App
+This is a simple web application built with Flask that allows users to upload a video file and convert its audio track to text using Google's speech recognition.
 
-This project is a simple web application that converts video files into text using Flask, MoviePy, and the Google Web Speech API. It takes an uploaded video, extracts the audio, applies basic noise reduction, and then transcribes the speech in the video into text.
+Prerequisites
+Before running the application, make sure you have the following installed:
 
-## Prerequisites
+Python (>=3.6)
+Flask
+SpeechRecognition
+moviepy
+Flask-CORS
+You can install these dependencies using pip:
 
-Before running the project, make sure you have the following installed:
-
-- Python (>=3.6)
-- Flask
-- Flask-CORS
-- MoviePy
-- Pydub
-- SpeechRecognition
-
-You can install the required packages using pip:
-
-pip install flask flask-cors moviepy pydub SpeechRecognition
-
+pip install Flask SpeechRecognition moviepy Flask-CORS
 Usage
-Access the web application by opening your web browser and navigating to http://localhost:5000.
+Clone or download this repository to your local machine.
 
-Click the "Choose File" button to upload a video file for conversion.
+Open a terminal and navigate to the project directory.
 
-Once the video is uploaded, click the "Convert to Text" button.
+Run the Flask application:
 
-The application will process the video, perform noise reduction, and transcribe the speech into text.
+
+python app.py
+This will start the web server, and you should see output indicating that the server is running.
+
+Open a web browser and go to http://localhost:5000 to access the application.
+
+You will see an HTML form where you can upload a video file.
+
+Select a video file and click the "Convert to Text" button.
+
+The server will process the video, extract audio, and use Google's speech recognition to convert the audio to text.
 
 The resulting text will be displayed on the web page.
 
-Configuration
-You can configure the noise reduction level in the app.py file by adjusting the audio = audio - 20 line. Experiment with different values to optimize noise reduction for your videos.
+Customizing Directory Paths
+The code includes two directory paths for saving the uploaded video and converted audio. You can customize these paths as follows:
 
-Troubleshooting
-If you encounter any issues or errors, please refer to the error messages displayed on the web page or in the terminal where the Flask application is running.
+desktop_directory: Specify the first directory where you want to save the uploaded video file.
+
+desktop_directory2: Specify the second directory where you want to save the uploaded video file if the first directory doesn't exist.
+
+Please ensure that the specified directories are accessible and have write permissions.
+
+Handling Errors
+If any errors occur during the process, they will be displayed on the web page.
+
+Contributing
+Feel free to contribute to this project by submitting pull requests or reporting issues.
 
 License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Acknowledgments
-Flask
-MoviePy
-Pydub
-SpeechRecognition
-Feel free to customize this README to include additional information or instructions specific to your project.
+This project is licensed under the MIT License - see the LICENSE file for details.

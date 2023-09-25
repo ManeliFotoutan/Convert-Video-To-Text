@@ -1,36 +1,24 @@
-# Import necessary libraries
 import os
 from flask import Flask, request, jsonify
 import speech_recognition as sr
 import moviepy.editor as mp
 from flask_cors import CORS
 
-# Create a Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for your Flask app
+CORS(app)
 
-# Define the index route to serve your HTML page
 @app.route('/')
 def index():
     return open('convertToText.html').read()
 
-# Define the route for converting video to text
 @app.route('/convert-video-to-text', methods=['POST'])
 def convert_video_to_text():
     try:
         # Get the uploaded video file from the request
         uploaded_video = request.files['inpFile']
 
-        # Specify the first directory where you want to save the uploaded video file (e.g., desktop_directory)
-        desktop_directory = 'C:\\Users\\User'
-        video_path_on_desktop = os.path.join(desktop_directory, uploaded_video.filename)
-
-        # Specify the second directory where you want to save the uploaded video file (e.g., desktop_directory2)
-        desktop_directory2 = 'D:\\'
-
-        # Check if the first directory exists, if not, save to the second directory
-        if not os.path.exists(desktop_directory):
-            desktop_directory = desktop_directory2
+        # Specify the directory where you want to save the uploaded video file
+        desktop_directory = 'C:\\Users\\User'  # Change this to your desired directory
 
         # Save the uploaded video to the selected directory
         video_path_on_desktop = os.path.join(desktop_directory, uploaded_video.filename)
@@ -40,22 +28,36 @@ def convert_video_to_text():
         audio_filename = os.path.splitext(uploaded_video.filename)[0] + "_converted_audio.wav"
         audio_path = os.path.join(desktop_directory, audio_filename)
 
-        # Initialize the speech recognition recognizer
+        # Convert video to audio using moviepy
+        video = mp.VideoFileClip(video_path_on_desktop)
+        audio = video.audio
+        audio.write_audiofile(audio_path)
+
+        # Initialize the speech recognition recognizer with PocketSphinx
         r = sr.Recognizer()
+        r.energy_threshold = 4000  # Adjust the energy threshold as needed
 
-        # Convert video to audio and recognize the speech in the audio
-        with mp.VideoFileClip(video_path_on_desktop) as clip:
-            audio = clip.audio.to_audiofile(audio_path)
-            with sr.AudioFile(audio_path) as source:
-                r.adjust_for_ambient_noise(source)
-                audio_file = r.record(source)
-                result = r.recognize_google(audio_file)
+        # Load the converted audio file
+        audio_file = sr.AudioFile(audio_path)
 
-        return jsonify({'result': result})
+        print("Converting audio to text...")
 
+        # Recognize the speech in the audio file using PocketSphinx
+        with audio_file as source:
+            r.adjust_for_ambient_noise(source)
+            audio_data = r.record(source)
+            try:
+                result = r.recognize_sphinx(audio_data)
+                print("Conversion complete. Recognized text:", result)
+                return jsonify({'result': result})
+            except sr.UnknownValueError:
+                print("PocketSphinx could not understand audio")
+                return jsonify({'error': 'PocketSphinx could not understand audio'})
+            except sr.RequestError as e:
+                print("PocketSphinx error: {0}".format(e))
+                return jsonify({'error': str(e)})
     except Exception as e:
         return jsonify({'error': str(e)})
 
-# Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)

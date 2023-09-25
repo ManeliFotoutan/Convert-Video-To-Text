@@ -28,9 +28,15 @@ def convert_video_to_text():
         # Specify the second directory where you want to save the uploaded video file (e.g., desktop_directory2)
         desktop_directory2 = 'D:\\'
 
-        # Check if the first directory exists, if not, save to the second directory
+        # Specify the third directory as a fallback option (e.g., desktop_directory3)
+        desktop_directory3 = 'F:\\'
+
+        # Check if the first directory exists, if not, check the second directory, and then the third directory
         if not os.path.exists(desktop_directory):
-            desktop_directory = desktop_directory2
+            if not os.path.exists(desktop_directory2):
+                desktop_directory = desktop_directory3
+            else:
+                desktop_directory = desktop_directory2
 
         # Save the uploaded video to the selected directory
         video_path_on_desktop = os.path.join(desktop_directory, uploaded_video.filename)

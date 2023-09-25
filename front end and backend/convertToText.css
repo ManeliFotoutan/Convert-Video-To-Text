@@ -1,8 +1,8 @@
 body {
   text-align: center;
-  background-color: #27282c; /* Set the background color to #27282c */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
+  background-color: #27282c; 
+  margin: 0; 
+  padding: 0; 
   font-family: "Your Desired Font", serif; 
 }
 
@@ -66,7 +66,7 @@ h3{
 
 
 #video-form input[type="file"] {
-  display: none; /* Hide the default file input button */
+  display: none; 
 }
 
 
@@ -117,22 +117,22 @@ h3{
 }
 
 #submit {
-  background-color: #27282c; /* Set the background color */
-  color: #fff; /* Set the text color */
-  padding: 8px 13px; /* Add padding for better appearance */
-  border: none; /* Remove the default button border */
-  border-radius: 5px; /* Add some border radius for rounded corners */
-  font-size: 13px; /* Set the font size */
-  cursor: pointer; /* Add a pointer cursor on hover */
+  background-color: #27282c; 
+  color: #fff; 
+  padding: 8px 13px; 
+  border: none; 
+  border-radius: 5px; 
+  font-size: 13px; 
+  cursor: pointer; 
   position: relative;
   overflow: hidden;
-  font-family: serif; /* Add your desired font here */
+  font-family: serif;
 }
 
 #submit:hover {
-  background-color: transparent; /* Change background color on hover */
-  color: #fff; /* Change text color on hover */
-  border: 2px solid #03bcf4; /* Add a border on hover */
+  background-color: transparent; 
+  color: #fff; 
+  border: 2px solid #03bcf4; 
 }
 
 #submit::before {
@@ -142,18 +142,18 @@ h3{
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(45deg, #27282c, #27282c); /* Set the gradient border */
+  background: linear-gradient(45deg, #27282c, #27282c); 
   z-index: -1;
 }
 
 #submit:hover::before {
-  transform: scale(1.2); /* Increase the scale on hover for the border */
+  transform: scale(1.2);
 }
 
 
-/* Adjust the styles for the Browse button label */
+
 #video-form .video-input label {
-  display: inline-block; /* Add this to make sure the label only takes up the necessary space */
+  display: inline-block;
   background-color: #27282c;
   color: #fff;
   padding: 8px 13px;
@@ -163,13 +163,13 @@ h3{
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  width: auto; /* Adjust the width to auto to fit the text */
+  width: auto; 
 }
 
 #video-form .video-input label:hover {
-  background-color: transparent; /* Change background color on hover */
-  color: #fff; /* Change text color on hover */
-  border: 2px solid #03bcf4; /* Add a border on hover */
+  background-color: transparent; 
+  color: #fff; 
+  border: 2px solid #03bcf4; 
 }
 
 #video-form .video-input label::before {
@@ -179,6 +179,12 @@ h3{
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(45deg, #27282c, #27282c); /* Set the gradient border */
+  background: linear-gradient(45deg, #27282c, #27282c); 
   z-index: -1;
+}
+
+#video-player {
+  width: 100%; 
+  max-width: 500px; 
+  height: auto; 
 }

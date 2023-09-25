@@ -21,11 +21,19 @@ def convert_video_to_text():
         # Get the uploaded video file from the request
         uploaded_video = request.files['inpFile']
 
-        # Specify the directory where you want to save the uploaded video file (e.g., the desktop)
+        # Specify the first directory where you want to save the uploaded video file (e.g., desktop_directory)
         desktop_directory = 'C:\\Users\\User'
         video_path_on_desktop = os.path.join(desktop_directory, uploaded_video.filename)
 
-        # Save the uploaded video to the desktop directory
+        # Specify the second directory where you want to save the uploaded video file (e.g., desktop_directory2)
+        desktop_directory2 = 'D:\\'
+
+        # Check if the first directory exists, if not, save to the second directory
+        if not os.path.exists(desktop_directory):
+            desktop_directory = desktop_directory2
+
+        # Save the uploaded video to the selected directory
+        video_path_on_desktop = os.path.join(desktop_directory, uploaded_video.filename)
         uploaded_video.save(video_path_on_desktop)
 
         # Generate a unique filename for the converted audio

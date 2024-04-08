@@ -1,11 +1,9 @@
-# Import necessary libraries
 import os
 from flask import Flask, request, jsonify
 import speech_recognition as sr
 import moviepy.editor as mp
 from flask_cors import CORS
 
-# Create a Flask app
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
 
@@ -62,6 +60,5 @@ def convert_video_to_text():
     except Exception as e:
         return jsonify({'error': str(e)})
 
-# Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,52 +1,89 @@
-#Video to Text Conversion Web App
-This is a simple web application built with Flask that allows users to upload a video file and convert its audio track to text using Google's speech recognition.
+# Video to Text Converter
 
-Prerequisites
-Before running the application, make sure you have the following installed:
+This repository contains a Flask application that converts an uploaded video file to text by extracting its audio and using speech recognition.
 
-Python (>=3.6)
-Flask
-SpeechRecognition
-moviepy
-Flask-CORS
-You can install these dependencies using pip:
+## Features
 
-pip install Flask SpeechRecognition moviepy Flask-CORS
-Usage
-Clone or download this repository to your local machine.
+- Upload a video file through the web interface.
+- Convert the video's audio to text using Google's speech recognition.
+- Handle multiple directories for saving the uploaded video and converted audio files.
 
-Open a terminal and navigate to the project directory.
+## Requirements
 
-Run the Flask application:
+- Python 3.x
+- Flask
+- moviepy
+- SpeechRecognition
 
+## Installation
 
-python app.py
-This will start the web server, and you should see output indicating that the server is running.
+1. Clone the repository:
 
-Open a web browser and go to http://localhost:5000 to access the application.
+    ```bash
+    git clone https://github.com/yourusername/video-to-text-converter.git
+    cd video-to-text-converter
+    ```
 
-You will see an HTML form where you can upload a video file.
+2. Install the required packages:
 
-Select a video file and click the "Convert to Text" button.
+    ```bash
+    pip install flask moviepy SpeechRecognition
+    ```
 
-The server will process the video, extract audio, and use Google's speech recognition to convert the audio to text.
+## Usage
 
-The resulting text will be displayed on the web page.
+1. Run the Flask application:
 
-Customizing Directory Paths
-The code includes two directory paths for saving the uploaded video and converted audio. You can customize these paths as follows:
+    ```bash
+    python app.py
+    ```
 
-desktop_directory: Specify the first directory where you want to save the uploaded video file.
+2. Open your web browser and navigate to `http://127.0.0.1:8001`.
 
-desktop_directory2: Specify the second directory where you want to save the uploaded video file if the first directory doesn't exist.
+3. Upload a video file through the web interface.
 
-Please ensure that the specified directories are accessible and have write permissions.
+4. The application will process the video, convert its audio to text, and display the transcribed text.
 
-Handling Errors
-If any errors occur during the process, they will be displayed on the web page.
+## Code Overview
 
-Contributing
-Feel free to contribute to this project by submitting pull requests or reporting issues.
+The main application code is contained in `app.py`. 
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+- The root route (`/`) handles both GET and POST requests.
+- When a video is uploaded, it checks for available directories to save the video file.
+- The video is saved, its audio is extracted, and speech recognition is performed on the audio.
+- The resulting text is displayed on a template (`video_to_text.html`).
+
+## Directory Configuration
+
+The application attempts to save the uploaded video file in the following directories:
+
+1. `C:\Users\User`
+2. `D:\`
+3. `F:\`
+
+If the first directory does not exist, it checks the second, and then the third.
+
+## Template
+
+The HTML template `video_to_text.html` is used to display the result of the conversion or any errors that occur during the process.
+
+## Contributing
+
+If you would like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes.
+4. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+For any questions or issues, please open an issue on GitHub or contact me at your.email@example.com.
+
+---
+
+**Note:** Replace `yourusername` in the clone URL with your actual GitHub username, and update the contact email to your own.

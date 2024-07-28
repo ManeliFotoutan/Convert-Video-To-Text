@@ -76,14 +76,7 @@ If you would like to contribute to this project, please follow these steps:
 3. Make your changes.
 4. Submit a pull request.
 
-## License
 
-This project is licensed under the MIT License.
-
----
 
 For any questions or issues, please open an issue on GitHub or contact me at maneli0foroutan@gmail.com.
 
----
-
-**Note:** Replace `yourusername` in the clone URL with your actual GitHub username, and update the contact email to your own.

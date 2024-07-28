@@ -63,19 +63,8 @@ The application attempts to save the uploaded video file in the following direct
 
 If the first directory does not exist, it checks the second, and then the third.
 
-## Template
-
-The HTML template `video_to_text.html` is used to display the result of the conversion or any errors that occur during the process.
-
-## Contributing
-
-If you would like to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch.
-3. Make your changes.
-4. Submit a pull request.
-
+## Portable Version
+A portable version of the application is also available in a .rar archive. This version includes all necessary dependencies and can be used without installation. Extract the .rar file and run the application directly.
 
 
 For any questions or issues, please open an issue on GitHub or contact me at maneli0foroutan@gmail.com.

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="convertToText.css">
+    <title>Video to Text Converter</title>
+</head>
+<body>
+    <h1>Video to Text Converter</h1>
+    <form action="/" method="post" enctype="multipart/form-data" id="video-form">
+        <div class="box">
+            <div class="content">
+                <p>Browse your video which you want to convert to text, then click submit:</p>
+                <p id="explanation"></p>
+            </div>
+        </div>
+        
+        <div class="video-preview">
+            <video id="video-preview" controls style="display: none;">
+                <source id="video-source" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="video-input">
+            <label for="video-input">
+                <span>Browse</span>
+            </label>
+            <input type="file" name="video" id="video-input" accept="video/*" required>
+        </div>
+        <div class="button-container">
+            <button type="submit" id="submit">Submit</button>
+        </div>
+    </form>
+
+    <div class="box">
+        <div class="content">
+            <p>Converted Text: <br>
+                (if your video is 2 minutes, you should stand for more than 2 minutes, so be patient)</p>
+        </div>
+    </div>
+
+    <div class="result" id="result">
+        <p>
+            {% if result %}
+                {{ result }}
+            {% elif error %}
+                Error: {{ error }}
+            {% endif %}
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('video-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const videoPreview = document.getElementById('video-preview');
+                const videoSource = document.getElementById('video-source');
+
+                videoSource.src = URL.createObjectURL(file);
+                videoPreview.style.display = 'block';
+                videoPreview.load();
+                videoPreview.play();
+            }
+        });
+    </script>
+</body>
+</html>

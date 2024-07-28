@@ -82,7 +82,7 @@ This project is licensed under the MIT License.
 
 ---
 
-For any questions or issues, please open an issue on GitHub or contact me at your.email@example.com.
+For any questions or issues, please open an issue on GitHub or contact me at maneli0foroutan@gmail.com.
 
 ---
 

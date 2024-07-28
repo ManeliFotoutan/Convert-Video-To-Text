@@ -35,7 +35,7 @@ This repository contains a Flask application that converts an uploaded video fil
 1. Run the Flask application:
 
     ```bash
-    python app.py
+    python video_to_text.py
     ```
 
 2. Open your web browser and navigate to `http://127.0.0.1:8001`.
@@ -64,7 +64,7 @@ The application attempts to save the uploaded video file in the following direct
 If the first directory does not exist, it checks the second, and then the third.
 
 ## Portable Version
-A portable version of the application is also available in a .zip archive. This version includes all necessary dependencies and can be used without installation. Extract the .rar file and run the application directly.
+A portable version of the application is also available in a .rar archive. This version includes all necessary dependencies and can be used without installation. Extract the .rar file and run the application directly.
 
 
 For any questions or issues, please open an issue on GitHub or contact me at maneli0foroutan@gmail.com.
